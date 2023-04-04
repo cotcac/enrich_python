@@ -4,12 +4,15 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
 
 from .serializers import TopicsSerializer
 from .models import Topics
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create(request):
     topic = request.data # get data from resquest.
     if len(topic["title"]) < 5:
@@ -20,6 +23,7 @@ def create(request):
     return Response(serializer.data)
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def update(request, id):
     instance = get_object_or_404(Topics, pk=id) #Application.objects.get(pk=id)
     app = request.data
@@ -28,6 +32,7 @@ def update(request, id):
     serializer.save()
     return Response(serializer.data)
 
+# @permission_classes([IsAuthenticated])
 @api_view(['GET'])
 def index(request):
     """
@@ -47,6 +52,7 @@ def detail(request, id):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def delete(request, id):
     instance = get_object_or_404(Topics, pk=id)
     instance.delete()
