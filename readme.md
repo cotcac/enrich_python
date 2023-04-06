@@ -23,6 +23,11 @@ python manage.py startapp topics
 python manage.py startapp blogs
 ```
 
+# Environment variable
+```
+cp .env.example .env
+```
+
 # Migration
 ```
 python manage.py makemigrations
