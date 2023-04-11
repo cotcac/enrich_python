@@ -15,8 +15,6 @@ from .models import Topics
 @permission_classes([IsAuthenticated])
 def create(request):
     topic = request.data # get data from resquest.
-    if len(topic["title"]) < 5:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
     serializer = TopicsSerializer(data=topic)
     serializer.is_valid(raise_exception=True) # auto return 400
     serializer.save()
@@ -32,9 +30,8 @@ def update(request, id):
     serializer.save()
     return Response(serializer.data)
 
-# @permission_classes([IsAuthenticated])
 @api_view(['GET'])
-def index(request):
+def get_all_topic(request):
     """
     List all topics
     """

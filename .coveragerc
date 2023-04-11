@@ -1,0 +1,12 @@
+[report]
+omit =
+    *__init__*
+    */migrations/*
+    */urls.py
+    */models.py
+    */apps.py
+    */tests.py
+    */serializers.py
+    topics/admin.py
+    notes/settings.py
+    conftest.py
