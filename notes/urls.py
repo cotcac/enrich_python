@@ -28,4 +28,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('topics/', include('topics.urls')),
     path('blogs/', include('blogs.urls')),
+    path('logs/', include('log_viewer.urls')),
 ]
