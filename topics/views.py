@@ -6,10 +6,12 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+import logging
 
 from .serializers import TopicsSerializer
 from .models import Topics
-
+#  'django' is important other will not work ex: __name__, 'ANY NAME'
+logger = logging.getLogger('django')
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -38,6 +40,10 @@ def index(request):
     """
     List all topics
     """
+    logger.info("Platform is running FINE")
+    logger.warning("Platform is running at risk")
+    logger.debug("Platform is running at risk")
+    logger.error("Error Platform is running at risk")
     topics = Topics.objects.all() # query database.
     serializer = TopicsSerializer(topics, many=True) # format data
     return JsonResponse(serializer.data, safe=False)

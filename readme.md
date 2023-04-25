@@ -37,3 +37,8 @@ pip freeze > requirements.txt
 python manage.py createsuperuser
 admin/Fpt@12345
 ```
+
+# Gunicorn
+```
+gunicorn notes.wsgi
+```
